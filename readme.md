@@ -37,8 +37,8 @@ Projeto Blog , onde o usuario pode editar apagar ou escrever um artigo , estudan
 - [x] O usuario pode deletar um artigo.
 - [x] O usuario pode criar uma categoria.
 - [x] O usuario pode remover uma categoria.
-- [] Sistema de Login adm.
-- [] Sistema de Login Usuário.
+- [ ] Sistema de Login adm.
+- [ ] Sistema de Login Usuário.
 
 ---
 
@@ -100,7 +100,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 > Veja o arquivo  [package.json](https://github.com/Williamluqui/blog-bootstrap-5/blob/main/package.json)
 
-#### [](https://github.com/tgmarinho/Ecoleta#server-nodejs--typescript)**Server**  ([NodeJS](https://nodejs.org/en/)  )
+#### [](https://github.com/Williamluqui/blog-bootstrap-5)**Server**  ([NodeJS](https://nodejs.org/en/)  )
 
 -   **[Express](https://expressjs.com/)**
 
