@@ -1,0 +1,28 @@
+<%- include ('../../partials/navbar.ejs')%> 
+<%- include ('../../partials/header.ejs')%> 
+
+<!--
+    Card new category - reformular apos o curso 
+-->
+
+<div class="container">
+<hr>
+     <div class="card">
+        <div class="card-header">
+        <h2>Editar categoria</h2>
+        </div>
+      
+            
+    <div class="card-body">
+    <form method="POST" action="/categories/update">
+        
+      
+        <input class="form-control" id="edit-categories" type="text" name="title" placeholder="Titulo da categoria" value="<%= category.title %> "><br>
+        <input type="hidden" name="id" value="<%= category.id %> ">
+        <button class="btn btn-success" id="btnEdit">Atualizar</button>
+        <a href="/admin/categories/" class="btn btn-primary">Voltar</a>
+    </form>
+   </div>
+   </div>
+</div>
+<%- include ('../../partials/footer.ejs')%>     

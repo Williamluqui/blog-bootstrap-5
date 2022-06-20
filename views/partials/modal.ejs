@@ -1,0 +1,28 @@
+<!--MODAL DELETE ARTIGOS E CATEGORIAS -->
+
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                <div class="icon-box">
+                    <i class="material-icons">&#xE5CD;</i>
+                </div>
+
+                <h4 class="modal-title w-100">Tem Certeza ?</h4>
+               
+            </div>
+
+            <div class="modal-body">
+                <p>Você realmente deseja excluir esse registro? Este processo não pode ser desfeito.<p>
+            </div>
+
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              
+                <button class="btn btn-danger" id="btn-modal-delete" type="submit" onclick="modalConfirm()">Deletar</button>
+            </div>
+        </div>
+    </div>
+</div>
