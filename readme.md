@@ -1,13 +1,16 @@
 <h1 align="center">
-    <img alt="IMG" title="IMG" src=" "  />
+    <img alt="IMG" title="IMG" src="https://user-images.githubusercontent.com/88260564/174528455-b3f67afe-f5ba-4a9d-93da-551e0a8c98f9.png "  />
 </h1>
 
 
-![2]()
+
+![Screenshot 2022-06-20 015951](https://user-images.githubusercontent.com/88260564/174528462-d25b7ae9-87b2-41f3-9064-8f8d3ad34090.png)
+![Screenshot 2022-06-20 020006](https://user-images.githubusercontent.com/88260564/174528463-67ea2193-36a2-4d59-9739-314fd9b43187.png)
+
 
 
 <h4 align="center"> 
-	🚧  Blog 👨‍💻 coming soon 🚀 🚧
+	🚧  Blog 👨‍💻 Em Construção 🚀 🚧
 </h4>
 
 <p align="center">
@@ -34,8 +37,8 @@ Projeto Blog , onde o usuario pode editar apagar ou escrever um artigo , estudan
 - [x] O usuario pode deletar um artigo.
 - [x] O usuario pode criar uma categoria.
 - [x] O usuario pode remover uma categoria.
-- [-] Sistema de Login adm.
-- [-] Sistema de Login Usuário.
+- [] Sistema de Login adm.
+- [] Sistema de Login Usuário.
 
 ---
 
@@ -67,7 +70,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 ```bash
 
 # Clone este repositório
-$ git clone url
+$ git clone  https://github.com/Williamluqui/blog-bootstrap-5
 
 # Instale o MySql
 
@@ -95,7 +98,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 + Sequelize
 + Body-Parser
 
-> Veja o arquivo  [package.json]()
+> Veja o arquivo  [package.json](https://github.com/Williamluqui/blog-bootstrap-5/blob/main/package.json)
 
 #### [](https://github.com/tgmarinho/Ecoleta#server-nodejs--typescript)**Server**  ([NodeJS](https://nodejs.org/en/)  )
 
