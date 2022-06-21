@@ -1,0 +1,21 @@
+<nav aria-label="Pagination">
+    <hr class="my-0" />
+    <ul class="pagination pagination-sm justify-content-center my-4">
+<% if(result.next == false) {%> 
+     <li class="page-item "><a class="page-link" href="/articles/page/<%= result.page - 1%>" tabindex="-1" aria-disabled="true">Anterior</a></li>
+     
+  <%  } else if (result.page === 1){%> 
+    <li class="page-item "><a class="page-link" href="/" tabindex="-1" aria-disabled="true">Anterior</a></li>
+ <% }else {%>
+    <li class="page-item " aria-current="page"><a class="page-link" href="/">Anterior <%= result.page %> </a></li>
+    <% } %> 
+        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+        <!-- <li class="page-item"><a class="page-link" href="#!">15</a></li> -->
+        <!-- PROXIMA PAGINA -->
+    <% if (result.next == true ){%>
+        <li class="page-item"  ><a class="page-link" href=" /articles/page/<%= result.page + 1 %> ">Próximo</a></li>
+        <% }else{  %> 
+            <li class="page-item disabled"  ><a class="page-link" href="">Próximo</a></li>
+        <%   } %> 
+    </ul>
+</nav>
