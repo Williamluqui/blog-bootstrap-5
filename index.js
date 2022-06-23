@@ -2,15 +2,31 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const session = require("express-session");
 
 const categoriesController = require("./routes/categories/CategoriesController");
 const articlesController = require("./routes/articles/ArticlesController");
 const connection = require("./database/database");
 const port = process.env.PORT;
+const secret = process.env.COOKIE_SECRET;
 
 const Article = require("./routes/articles/Article");
 const Category = require("./routes/categories/Category");
+const UsersController = require("./routes/users/UsersController");
+const User = require("./routes/users/User")
 
+
+
+// SECRET KEY // 
+app.use(session({
+  secret: secret,
+  cookie:{maxAge: 3600000},// 1 HR
+  resave: true,
+  saveUninitialized: true
+
+}))
+
+ 
 // VIEW ENGINE
 app.set("view engine", "ejs");
 
@@ -21,9 +37,14 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
+app.use(express.json())
 //ROUTES
 app.use("/", categoriesController);
 app.use("/", articlesController);
+app.use("/", UsersController);
+
+
 
 app.get("/", (req, res) => {
   // PAGINA HOME //

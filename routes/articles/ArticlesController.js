@@ -4,18 +4,8 @@ const Category = require("../categories/Category");
 const Article = require("./Article");
 const slugify = require("slugify");
 
-const flash = require("connect-flash");
-const session = require("express-session");
 
-router.use(flash());
-router.use(
-  session({
-    secret: "secret",
-    cookie: { maxAge: 60000 },
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+
 
 router.get("/admin/articles", (req, res) => {
   Article.findAll({
