@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="py-5 header text-center">
+        <div class="container py-4">
+            <header>
+                <h1 class="display-4">Bootstrap masonry</h1>
+                <p class="font-italic text-muted mb-1">Use Masonry layouts with Bootstrap 4 grid system, using imagesLoaded plugin to fix the page loading issue.</p>
+                <p class="font-italic text-muted">Snippet by <a class="text-dark" href="https://bootstrapious.com/">
+                    <u>Bootstrapious</u></a>
+                </p>
+            </header>
+        </div>
+    </section>
+   
+    
+    <section class="pb-5">
+        <div class="container text-center">
+            <!-- Masonry grid -->
+            <div class="gallery-wrapper">
+                <!-- Grid sizer -->
+                <div class="grid-sizer col-lg-4 col-md-6"></div>
+                
+                <% articles.forEach(articles =>{%>
+                    <!-- Grid item -->
+                    <div class="col-lg-4 col-md-6 grid-item mb-4">
+                        <img class="img-fluid w-100 mb-3 img-thumbnail shadow-sm rounded-0" src="https://bootstrapious.com/i/snippets/sn-masonry/grid-item-1.png" alt="">
+                        <h2 class="h4"><%= articles.title %></h2>
+                        <p class="small text-muted font-italic"><% if (articles.body.length > 10 ) {%>
+                            <% let fimArt = ' ...'  %>  
+                            <%-articles.body.substring(0, 190) + fimArt; %>
+                            <%}%>
+                        </p>
+                    </div>
+
+                    <% }) %> 
+                
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- Resources-->
+    <footer class="p-4 bg-light d-flex align-items-center justify-content-center">
+        <small class="mb-0 text-uppercase font-weight-bold mr-3">Resources: </small>
+        <ul class="list-inline mb-0 d-inline-block">
+            <li class="list-inline-item">
+                <a class="text-muted font-italic" target="_blank" href="https://masonry.desandro.com/extras.html#bootstrap"><u>Masonry</u></a>
+            </li>
+            <li class="list-inline-item">
+                <a class="text-muted font-italic" target="_blank" href="https://imagesloaded.desandro.com/"><u>imagesLoaded</u></a>
+            </li>
+        </ul>
+    </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(function () {
+
+// Initate masonry grid
+var $grid = $('.gallery-wrapper').masonry({
+    temSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+});
+
+// Initate imagesLoaded
+$grid.imagesLoaded().progress( function() {
+    $grid.masonry('layout');
+});
+
+});
+</script>
+
+</html>

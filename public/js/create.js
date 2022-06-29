@@ -24,9 +24,8 @@ let msgErro = document.getElementById("msgErro");
 
 
 
-function emailValido() {
-  let regex_validation =
-    /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
+email.addEventListener("keyup", () => {
+  let regex_validation = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
   console.log(
     "É email válido? Resposta: " + regex_validation.test(email.value)
   );
@@ -37,7 +36,7 @@ function emailValido() {
   }
 
   console.log(email.value);
-}
+})
 
 password.addEventListener("keyup", () => {
   if (password.value.length <= 5) {

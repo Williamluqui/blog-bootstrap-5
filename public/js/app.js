@@ -1,10 +1,26 @@
 
 // Botao modal para deletar uma categoria
 
+function confirmarDelecao(event, form){
+    event.preventDefault();
+    let decision = confirm("Você quer deletar esta categoria?");
+    if(decision){
+        bootstrapSuccess()
+        setTimeout(()=>{
+         form.submit();
+        },1300)
+        
+        
+    }
+}
 
+// let btnModal = document.getElementById('btnDelete')
+// btnModal.addEventListener('click',(e)=>{
+//   e.preventDefault()
+//   document.getElementById('formCategory').submit();
+// })
 
 // const btnModal = document.getElementById('btn-modal-delete');
-
 
 // btnModal.addEventListener('click',(e) =>{
 //     e.preventDefault()
@@ -48,11 +64,6 @@
 // })
 
 
-
-
-
-
-
 // const editCategory = document.getElementById("edit-categories")
 // const btnEdit = document.getElementById("btnEdit").addEventListener('click',(e)=>{
 //     e.preventDefault()
@@ -68,7 +79,7 @@
 
 function bootstrapSuccess(){
 $(".bootstrap-growl").remove();
-$.bootstrapGrowl(" Categoria deletada !!",{
+$.bootstrapGrowl(" deletado com Sucesso! ",{
 type: "success",
 offset:{from:"bottom",amount:70},
 align:"right",

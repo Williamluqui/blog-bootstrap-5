@@ -24,7 +24,8 @@
    <div class="container">
     <hr>
     <h2>Artigos</h2>
-    <a class="btn btn-primary" href="/admin/articles/new" > <i type="button" class="material-icons" data-toggle="tooltip" title="Adicionar Artigo">&#xE147;</i><span>  Adicionar Artigo</span></a>
+    <a href="/admin/articles/new" class="btn btn-ls btn-success pull-right"><i class="fa fa-plus"></i> Adicionar Categoria</a>
+
     <hr>
     <table class="table table-bordered table-striped table-hover">
         <thead class="table-dark">
@@ -45,16 +46,15 @@
             <td><%= article.slug %></td>
             <td><%= article.category.title%></td>
             <td>
-              <a href="/admin/articles/edit/<%=article.slug  %>" class="btn btn-warning btn-sm">edit</a>   
-                <form method="POST" action="/articles/delete" style="display: inline;" id="submit" onsubmit="confirmarDelecao(e)">
+              <a href="/admin/articles/edit/<%=article.slug%>" class="btn btn-warning "><i class="fa fa-pencil-alt" ></i></a>
+                <form method="POST" action="/articles/delete" style="display: inline;" id="submit" onsubmit="confirmarDelecao(event, this)">
                     <input type="hidden" name="id" value="<%= article.id %>" >
-                    <button class="btn btn-danger btn-sm">Deletar</button>
+                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                   
                     <!-- <i  type="button" class="material-icons delete" data-bs-toggle="modal" data-bs-target="#mymodal" id="btnForm" style="color:red" title="apagar">
                         &#xE872;
                     </i> -->
                    </form>
-
-
             </td>
        <% }) %> 
        </tr>

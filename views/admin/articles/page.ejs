@@ -1,9 +1,11 @@
 <%- include ('../../partials/header.ejs')%>
-    
 <body >
         <!-- Responsive navbar-->
+        <% if(user == undefined){%> 
+            <%- include ('../../partials/homenavbar.ejs')%>
+        <%  }else{ %> 
         <%- include ('../../partials/navbar.ejs')%>
-
+        <%  } %> 
         <!-- Page header with logo and tagline-->
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
@@ -14,26 +16,16 @@
             </div>
         </header>
        <!-- Page content-->
-      
        <div class="container">
-        
-        
             <div class="row">
             <!-- Blog entries-->
-           
             <div class="col-lg-8">
                 <!-- Featured blog post-->
-                
-                
                 <% result.articles.rows.forEach(articles =>{%>
-                   
-                  
                 <div class="card mb-4">
                     <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
                     <div class="card-body">
-                        
                         <div class="small text-muted" id="displayMoment">  <%=articles.createdAt %></div>
-
                         <h2 class="card-title"><%= articles.title %></h2>
                         <p class="card-text"><% if (articles.body.length > 10 ) {%>
                             <% let fimArt = ' ...'  %>  
@@ -42,7 +34,6 @@
                             </p>
                             <input type="hidden" name="id" value="<%= articles.id %>">
                         <a class="btn btn-primary" href="/post/<%- articles.slug  %>  ">Leia mais →</a>
-
                     </div>
                 </div>
                 <% }) %> 
@@ -66,26 +57,15 @@
                 <div class="card mb-4">
                     <div class="card-header">Categories</div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!" >
-                                      
-                                <!--   EJS CATEGORIAS -->
-
-                                <%- include ('../../partials/categories.ejs')%>                      
-                                       
-                                    </a></li>
-                                   
-                                    
-                                </ul>
-                                
+                        <div class="card-body">
+                            <div class="row">
+                            <!--   EJS CATEGORIAS -->
+                            <%- include ('../../partials/categories.ejs')%>                      
                             </div>
                             <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
+                            <ul class="list-unstyled mb-0">
                                     
-                                </ul>
+                            </ul>
                             </div>
                         </div>
                     </div>
@@ -100,11 +80,8 @@
     </div>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
         </footer>
-
         <%- include ('../../partials/footer.ejs')%>
-        
-      
     </body>
 </html> 

@@ -15,6 +15,8 @@ const Category = require("./routes/categories/Category");
 const UsersController = require("./routes/users/UsersController");
 const User = require("./routes/users/User")
 
+const adminAuth = require("./middlewares/adminAuth");
+
 
 
 // SECRET KEY // 
@@ -48,16 +50,19 @@ app.use("/", UsersController);
 
 app.get("/", (req, res) => {
   // PAGINA HOME //
-
+ let user = req.session.user;
   Article.findAll({
     order: [["id", "DESC"]],
     limit: 4,
   }).then((articles) => {
+    
     Category.findAll().then((category) => {
-      res.render("homepage", { articles: articles, category: category });
+      res.render("homepage", { articles: articles, category: category,user:user });
+      
     });
   });
 });
+
 
 app.use((req, res) => {
   res.render("404");

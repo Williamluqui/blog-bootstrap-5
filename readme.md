@@ -37,7 +37,7 @@ Projeto Blog , onde o usuario pode editar apagar ou escrever um artigo , estudan
 - [x] O usuario pode deletar um artigo.
 - [x] O usuario pode criar uma categoria.
 - [x] O usuario pode remover uma categoria.
-- [ ] Sistema de Login adm.
+- [x] Sistema de Login adm.
 - [ ] Sistema de Login Usuário.
 
 ---
@@ -97,6 +97,10 @@ As seguintes ferramentas foram usadas na construção do projeto:
 + MySQL
 + Sequelize
 + Body-Parser
+## 🔐 Seguranças
++ Middlewares
++ session
++ Bcript 
 
 > Veja o arquivo  [package.json](https://github.com/Williamluqui/blog-bootstrap-5/blob/main/package.json)
 

@@ -1,6 +1,6 @@
-<%- include ('../../partials/navbar.ejs')%> 
-<%- include ('../../partials/header.ejs')%> 
 
+<%- include ('../../partials/header.ejs')%> 
+<%- include ('../../partials/navbar.ejs')%> 
 <body>
     <!-- TOAST SUCESS-->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -17,13 +17,31 @@
 
 <!-- Modal HTML -->
 
- <%- include ('../../partials/modal.ejs')%> 
-
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                <div class="icon-box">
+                <i class="material-icons">&#xE5CD;</i>
+                </div>
+                <h4 class="modal-title w-100">Tem Certeza ?</h4>               
+            </div>
+            <div class="modal-body">
+                <p>Você realmente deseja excluir esse registro? Este processo não pode ser desfeito.<p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-danger" id="btnDelete" >Deletar</button>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- CONTENT -->
    <div class="container">
     <hr>
     <h2>Categorias</h2>
-    <a class="btn btn-success" href="/admin/categories/new" > <i type="button" class="material-icons" data-toggle="tooltip" title="Adicionar categoria">&#xE147;</i><span>  Adicionar Categoria</span></a>
+    <a href="/admin/categories/new" class="btn btn-ls btn-success pull-right"><i class="fa fa-plus"></i> Adicionar Categoria</a>
     <hr>
     <table class="table table-bordered table-striped table-hover">
         <thead class="table-dark">
@@ -33,40 +51,25 @@
                 <th>Slug</th>
                 <th>Ações</th>
             </tr>
-           
         </thead>
         <tbody>
-      
         <% categories.forEach(category => { %> 
             <tr >
                 <th><%= category.id%></th>
                 <td><%= category.title%></td>
-                <td><%= category.slug%></td>
+                <td><%= category.slug%></td>     
                 <td>
-                    <a href="/admin/categories/edit/<%=category.id   %>" class="btn btn-warning btn-sm">edit</a>  
-                    <form action="/categories/delete" method="POST" style="display: inline;"  >
-                        
+                    <a href="/admin/categories/edit/<%=category.id%>" class="btn btn-warning "><i class="fa fa-pencil-alt" ></i></a>  
+                    <form action="/categories/delete" method="POST" id="form" style="display: inline;" onsubmit="confirmarDelecao(event, this)" >
                         <input type="hidden" name="id" value="<%= category.id %>" >
-                        <button class="btn btn-danger btn-sm">Deletar</button>
-                      
-
-
-            </form>
+                        <button  class="btn btn-danger" ><i class="fa fa-trash"></i></button>
+                    </form>
                 </td>
-                
-                
             </tr>
-
        <% }) %> 
         </tbody>
-      
     </table>
-
-
     </div>
-
-
     <!-- END CONTENT -->
 </body>
-
 <%- include ('../../partials/footer.ejs')%>     

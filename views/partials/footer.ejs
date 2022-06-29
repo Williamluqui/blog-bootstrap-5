@@ -1,5 +1,7 @@
 <script src="/tinymce/tinymce.min.js"></script>
 <script src="/js/cadCategory.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4.1.4/imagesloaded.pkgd.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
@@ -42,6 +44,23 @@
     ]
     })
 </script>
+<script>
 
+$(function () {
+
+// Initate masonry grid
+var $grid = $('.gallery-wrapper').masonry({
+    temSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+});
+
+// Initate imagesLoaded
+$grid.imagesLoaded().progress( function() {
+    $grid.masonry('layout');
+});
+
+});
+</script>
 
 </html>

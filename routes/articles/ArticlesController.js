@@ -3,11 +3,12 @@ const router = express.Router();
 const Category = require("../categories/Category");
 const Article = require("./Article");
 const slugify = require("slugify");
+const adminAuth = require("../../middlewares/adminAuth");
 
 
 
 
-router.get("/admin/articles", (req, res) => {
+router.get("/admin/articles", adminAuth,(req, res) => {
   Article.findAll({
     include: [{ model: Category }],
   }).then((articles) => {
@@ -17,7 +18,7 @@ router.get("/admin/articles", (req, res) => {
   });
 });
 // NOVO ARTIGO
-router.get("/admin/articles/new", (req, res) => {
+router.get("/admin/articles/new", adminAuth,(req, res) => {
   Category.findAll()
     .then((categories) => {
       res.render("admin/articles/new", { categories: categories });
@@ -28,6 +29,7 @@ router.get("/admin/articles/new", (req, res) => {
 });
 router.get("/post/:slug", (req, res) => {
   let slug = req.params.slug;
+  let user = req.session.user;
 
   Article.findOne({
     where: {
@@ -35,13 +37,15 @@ router.get("/post/:slug", (req, res) => {
     },
     include: [{ model: Category }],
   }).then((article) => {
-    if (article != undefined) {
-      res.render("posts", { article: article });
-    }
+    Category.findAll().then((category)=>{
+      if (article != undefined) {
+          res.render("posts", { article: article,category:category,user:user });
+        }
+    })
   });
 });
 
-router.get("/admin/articles/edit/:slug", (req, res) => {
+router.get("/admin/articles/edit/:slug",adminAuth, (req, res) => {
   // EDITAR ARTIGO
   let slug = req.params.slug;
   
@@ -52,7 +56,6 @@ router.get("/admin/articles/edit/:slug", (req, res) => {
         article: article,
         category: category,
       });
-        
       }else{
         res.render('admin/articles/')
       }
@@ -61,7 +64,7 @@ router.get("/admin/articles/edit/:slug", (req, res) => {
   });
 });
 
-router.post("/article/update", (req, res) => {
+router.post("/article/update",adminAuth, (req, res) => {
   //ATUALIZAR O BD APOS EDITAR O ARQUIVO
   let id = req.body.id;
   let title = req.body.title;
@@ -78,16 +81,14 @@ router.post("/article/update", (req, res) => {
   )
     .then(() => {
       res.redirect("/admin/articles") // inserir msg de sucesso
-      
     })
     .catch((err) => {
       res.redirect("404");
     });
 });
 
-router.post("/articles/save", (req, res) => {
+router.post("/articles/save", adminAuth,(req, res) => {
   //  SAlVAR ARTIGO
-
   let title = req.body.title;
   let body = req.body.body;
   let category = req.body.category;
@@ -102,7 +103,7 @@ router.post("/articles/save", (req, res) => {
   });
 });
 
-router.post("/articles/delete", (req, res) => {
+router.post("/articles/delete", adminAuth,(req, res) => {
   // DELETAR ARTIGO
   let id = req.body.id;
 
@@ -126,6 +127,7 @@ router.post("/articles/delete", (req, res) => {
 router.get("/articles/page/:num", (req, res, next) => {
   // PAGINACAO DE PAGINA
   let page = req.params.num;
+  let user = req.session.id;
   let offset = 0;
 
   if (isNaN(page) || page <= 1) {
@@ -133,7 +135,6 @@ router.get("/articles/page/:num", (req, res, next) => {
   } else {
     offset = (parseInt(page) - 1) * 4;
   }
-
   Article.findAndCountAll({
     limit: 4,
     offset: offset,
@@ -145,19 +146,15 @@ router.get("/articles/page/:num", (req, res, next) => {
     } else {
       next = true;
     }
-
     let result = {
       page:parseInt(page),
       next: next,
       articles: articles,
     };
-
-    
     Category.findAll().then((category) => {
-      res.render("admin/articles/page", { category: category, result: result });
+      res.render("admin/articles/page", { category: category, result: result,user:user });
     });
   });
-  
 });
 
 module.exports = router;
