@@ -13,7 +13,16 @@ const Article = connection.define('articles',{
     body:{
         type:Sequelize.TEXT,
         allowNull: false
-    }
+    },
+    createdAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+      },
+    
 })
 Category.hasMany(Article); // uma categoria tem muitos artigos 1-m
 Article.belongsTo(Category); // relacionamento com a categoria 1-1 sequelize

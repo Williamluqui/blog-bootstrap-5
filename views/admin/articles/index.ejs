@@ -44,7 +44,12 @@
             <td><%= article.id %> </td>
             <td><%= article.title %></td>
             <td><%= article.slug %></td>
-            <td><%= article.category.title%></td>
+            <% if(article.category !== null){%> 
+              <td><%= article.category.title%></td>
+             <% }else{%>
+              <td><%= article.category%></td>
+              <%  } %> 
+            
             <td>
               <a href="/admin/articles/edit/<%=article.slug%>" class="btn btn-warning "><i class="fa fa-pencil-alt" ></i></a>
                 <form method="POST" action="/articles/delete" style="display: inline;" id="submit" onsubmit="confirmarDelecao(event, this)">

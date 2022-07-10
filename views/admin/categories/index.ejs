@@ -53,20 +53,20 @@
             </tr>
         </thead>
         <tbody>
-        <% categories.forEach(category => { %> 
-            <tr >
-                <th><%= category.id%></th>
-                <td><%= category.title%></td>
-                <td><%= category.slug%></td>     
+        <%categories.forEach(category =>{%> 
+            <tr>
+                <th><%=category.id%></th>
+                <td><%=category.title%></td>
+                <td><%=category.slug%></td>     
                 <td>
                     <a href="/admin/categories/edit/<%=category.id%>" class="btn btn-warning "><i class="fa fa-pencil-alt" ></i></a>  
                     <form action="/categories/delete" method="POST" id="form" style="display: inline;" onsubmit="confirmarDelecao(event, this)" >
-                        <input type="hidden" name="id" value="<%= category.id %>" >
+                        <input type="hidden" name="id" value="<%=category.id%>" >
                         <button  class="btn btn-danger" ><i class="fa fa-trash"></i></button>
                     </form>
                 </td>
             </tr>
-       <% }) %> 
+       <%})%> 
         </tbody>
     </table>
     </div>

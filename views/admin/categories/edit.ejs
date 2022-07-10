@@ -17,8 +17,8 @@
     <form method="POST" action="/categories/update">
         
       
-        <input class="form-control" id="edit-categories" type="text" name="title" placeholder="Titulo da categoria" value="<%= category.title %> "><br>
-        <input type="hidden" name="id" value="<%= category.id %> ">
+        <input class="form-control" id="edit-categories" type="text" name="title" placeholder="Titulo da categoria" value="<%=category.title%>"><br>
+        <input type="hidden" name="id" value="<%=category.id%> ">
         <button class="btn btn-success" id="btnEdit">Atualizar</button>
         <a href="/admin/categories/" class="btn btn-primary">Voltar</a>
     </form>

@@ -1,5 +1,6 @@
 
 <%- include ('../../partials/header.ejs')%> 
+
 <%- include ('../../partials/navbar.ejs')%> 
 <!-- Artigo -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -27,23 +28,19 @@
         <label>Categorias:</label>
         <select name="category" class="form-control" >
            
-         
-          <% categories.forEach((category) => {  %> 
-                <option value="<%= category.id %> "><%= category.title %> </option>
-          <%   }) %> 
+          <%categories.forEach((category) => {  %> 
+                <option value="<%=category.id%> "><%=category.title%></option>
+          <%})%> 
         </select>
         <br>
         <button type="submit" class="btn btn-success" id="btnCadastrar">Cadastrar</button>
-        
-        <a href="/admin/articles/" type="button" class="btn btn-primary"  >Voltar</a>
-
-       
+        <a href="/admin/articles/" type="button" class="btn btn-primary">Voltar</a>
     </form>
    </div> 
    </div>
 </div>
 
-<%- include ('../../partials/footer.ejs')%> 
+<%-include ('../../partials/footer.ejs')%> 
 
 
 

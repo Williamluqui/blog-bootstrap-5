@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+    <title>Login</title>
+</head>
+<body>
+    
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+              <img src="../images/draw2.webp"
+                class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+            <form action="/authenticate" method="post">
+                <h1 class="text-lg-center mb-5"  >Login</h1>
+                
+               
+                <!-- Email input -->
+                <div class="form-floating mb-3">
+                  <input type="email" name="email" placeholder="E-mail" id="form3Example3" class="form-control form-control-lg"
+                    placeholder="Enter a valid email address"  required />
+                  <label class="form-label" for="form3Example3">Email</label>
+                </div>
+      
+                <!-- Password input -->
+                <div class="form-floating mb-3">
+                  <input type="password" name="password" id="floatingInput" class="form-control form-control-lg"
+                    placeholder="Enter password" required/>
+                  <label class="form-label" for="floatingInput">Senha</label>
+                </div>
+      
+                <div class="d-flex justify-content-between align-items-center">
+                  <!-- Checkbox -->
+                  <div class="form-check mb-0">
+                  </div>
+                  <a href="/login" class="text-body">Esqueceu a senha ?</a>
+                </div>
+                <div class="text-center  text-lg-center mt-4 pt-3">
+                  <button type="submit" class="btn btn-primary btn-lg"
+                    style="padding-left: 2.5rem;padding-right: 2.5rem">Login</button>
+
+                  <p class="small fw-bold mt-2 pt-1 mb-0">Não tem uma conta? <a href="/users/new"
+                      class="link-danger">Cadastro</a></p>
+                </div>
+              </form>
+              <div class="text-center text-lg-center mt-4 pt-2">
+                <a href="/">
+                <button type="button" class="btn btn-outline-primary btn-ls center"
+                  style="padding-left: 1.5rem;padding-right: 1.5rem">Voltar</button>
+                  </a>
+            </div>
+          </div>
+        </div>
+          <!-- Right -->
+        </div>
+      </section>
+
+</body>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/jquery.bootstrap-growl.min.js"></script>
+</html>

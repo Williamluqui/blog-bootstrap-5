@@ -26,17 +26,14 @@
 
 Projeto Blog , onde o usuario pode editar apagar ou escrever um artigo , estudando o conceito de CRUD pude formular este blog com o auxilio de um professor, estou aprimorando algumas funcionalidades . 
 
-
-
-
 ---
 
 ## ⚙️ Funcionalidades
 
-- [x] O usuario pode criar um artigo.
-- [x] O usuario pode deletar um artigo.
-- [x] O usuario pode criar uma categoria.
-- [x] O usuario pode remover uma categoria.
+- [x] O Admin pode criar um artigo.
+- [x] O Admin pode deletar um artigo.
+- [x] O Admin pode criar uma categoria.
+- [x] O Admin pode remover uma categoria.
 - [x] Sistema de Login adm.
 - [ ] Sistema de Login Usuário.
 

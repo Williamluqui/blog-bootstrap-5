@@ -3,9 +3,10 @@
         <!-- Responsive navbar-->
         <% if(user == undefined){%> 
             <%- include ('../../partials/homenavbar.ejs')%>
-        <%  }else{ %> 
-        <%- include ('../../partials/navbar.ejs')%>
-        <%  } %> 
+            <%= user%> 
+        <%}else{%> 
+            <%- include ('../../partials/navbar.ejs')%>
+        <%}%> 
         <!-- Page header with logo and tagline-->
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
@@ -21,25 +22,25 @@
             <!-- Blog entries-->
             <div class="col-lg-8">
                 <!-- Featured blog post-->
-                <% result.articles.rows.forEach(articles =>{%>
+                <%result.articles.rows.forEach(articles =>{%>
                 <div class="card mb-4">
                     <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
                     <div class="card-body">
-                        <div class="small text-muted" id="displayMoment">  <%=articles.createdAt %></div>
-                        <h2 class="card-title"><%= articles.title %></h2>
-                        <p class="card-text"><% if (articles.body.length > 10 ) {%>
-                            <% let fimArt = ' ...'  %>  
-                            <p class="card-text"><%-articles.body.substring(0, 190) + fimArt; %></p>
+                        <% let dataArticle = articles.createdAt %> 
+                        <div class="small text-muted" id="displayMoment"> <%=dataArticle%></div>
+                        <h2 class="card-title"><%=articles.title%></h2>
+                        <p class="card-text"><%if (articles.body.length > 10 ) {%>
+                          
+                            <p class="card-text"><%-articles.body.substring(0, 190) + ' ...' %></p>
                             <%}%>
                             </p>
-                            <input type="hidden" name="id" value="<%= articles.id %>">
-                        <a class="btn btn-primary" href="/post/<%- articles.slug  %>  ">Leia mais →</a>
+                            <input type="hidden" name="id" value="<%=articles.id%>">
+                        <a class="btn btn-primary" href="/post/<%-articles.slug%>">Leia mais →</a>
                     </div>
                 </div>
                 <% }) %> 
                 <!-- Pagination-->
                 <%- include ('../../pagination.ejs')%>
-
             </div>
             <!-- Side widgets-->
             <div class="col-lg-4">

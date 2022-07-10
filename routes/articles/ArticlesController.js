@@ -4,21 +4,24 @@ const Category = require("../categories/Category");
 const Article = require("./Article");
 const slugify = require("slugify");
 const adminAuth = require("../../middlewares/adminAuth");
+const moment = require('moment'); 
 
 
-
+moment().format();
 
 router.get("/admin/articles", adminAuth,(req, res) => {
   Article.findAll({
     include: [{ model: Category }],
   }).then((articles) => {
     res.render("admin/articles/index", {
-      articles: articles.filter((a) => a.category != undefined),
+      articles: articles
     });
   });
 });
-// NOVO ARTIGO
+
+
 router.get("/admin/articles/new", adminAuth,(req, res) => {
+
   Category.findAll()
     .then((categories) => {
       res.render("admin/articles/new", { categories: categories });
@@ -27,19 +30,20 @@ router.get("/admin/articles/new", adminAuth,(req, res) => {
       res.redirect("404")
     });
 });
-router.get("/post/:slug", (req, res) => {
-  let slug = req.params.slug;
-  let user = req.session.user;
+
+router.get("/post/:slug", (req, res) => { //<<<<<
+  let {slug} = req.params;
+  const {user} = req.session;
 
   Article.findOne({
     where: {
-      slug: slug,
+      slug:slug
     },
     include: [{ model: Category }],
   }).then((article) => {
     Category.findAll().then((category)=>{
       if (article != undefined) {
-          res.render("posts", { article: article,category:category,user:user });
+          res.render("posts", { article: article,category:category,user:user});
         }
     })
   });
@@ -47,7 +51,7 @@ router.get("/post/:slug", (req, res) => {
 
 router.get("/admin/articles/edit/:slug",adminAuth, (req, res) => {
   // EDITAR ARTIGO
-  let slug = req.params.slug;
+  let {slug} = req.params;
   
   Article.findOne({ where: { slug: slug } }).then((article) => {
     Category.findAll().then((category) => {
@@ -66,46 +70,44 @@ router.get("/admin/articles/edit/:slug",adminAuth, (req, res) => {
 
 router.post("/article/update",adminAuth, (req, res) => {
   //ATUALIZAR O BD APOS EDITAR O ARQUIVO
-  let id = req.body.id;
-  let title = req.body.title;
-  let body = req.body.body;
-  let category = req.body.category;
-
+let {id, title, body, category} = req.body;
   Article.update(
     { title: title, slug: slugify(title), body: body, categoryId: category },
     {
       where: {
         id: id,
       },
-    }
-  )
-    .then(() => {
+    }).then(() => {
       res.redirect("/admin/articles") // inserir msg de sucesso
-    })
-    .catch((err) => {
+    }).catch((err) => {
       res.redirect("404");
     });
 });
+    
+    
+
 
 router.post("/articles/save", adminAuth,(req, res) => {
-  //  SAlVAR ARTIGO
-  let title = req.body.title;
-  let body = req.body.body;
-  let category = req.body.category;
+  //  SAVE ARTICLE
+  let {title, body,category} = req.body;
 
-  Article.create({
-    title: title,
+  if (title !== '') {
+    Article.create({
+    title:title,
     slug: slugify(title),
-    body: body,
+    body:body,
     categoryId: category,
   }).then(() => {
     res.redirect("/admin/articles");
   });
+  } else {
+    res.redirect("/admin/articles/new");
+  }
 });
 
 router.post("/articles/delete", adminAuth,(req, res) => {
   // DELETAR ARTIGO
-  let id = req.body.id;
+  let {id} = req.body;
 
   if (id != undefined) {
     if (!isNaN(id)) {
@@ -125,9 +127,9 @@ router.post("/articles/delete", adminAuth,(req, res) => {
 });
 
 router.get("/articles/page/:num", (req, res, next) => {
-  // PAGINACAO DE PAGINA
+  // PAGINATION
   let page = req.params.num;
-  let user = req.session.id;
+  const {user} = req.session;
   let offset = 0;
 
   if (isNaN(page) || page <= 1) {
@@ -140,6 +142,7 @@ router.get("/articles/page/:num", (req, res, next) => {
     offset: offset,
     order: [["id", "DESC"]],
   }).then((articles) => {
+     
     let next;
     if (offset + 4 >= articles.count) {
       next = false;
@@ -151,8 +154,9 @@ router.get("/articles/page/:num", (req, res, next) => {
       next: next,
       articles: articles,
     };
-    Category.findAll().then((category) => {
-      res.render("admin/articles/page", { category: category, result: result,user:user });
+    Category.findAll().then((category) => { //<<<<<< 
+        res.render("admin/articles/page", { category: category, result:result, user:user});
+        
     });
   });
 });

@@ -19,7 +19,7 @@
     <!-- CONTENT -->
    <div class="container ">
     <hr>
-    <h2>Usuarios</h2>
+    <h2>Usuários</h2>
     <a href="/users/new" class="btn btn-ls btn-success pull-right"><i class="fa fa-plus"></i> Adicionar usuário</a>
     <hr>
     <table class="table table-bordered table-striped table-hover">
@@ -31,15 +31,19 @@
             </tr>
         </thead>
       <tbody>
+        <% if(msg){%> 
+          <%=msg%> 
+          <%} %> 
+      
           <% user.forEach(user => {%> 
             <tr>
-            <td><%= user.id %> </td>
-            <td><%= user.email %> </td>
+            <td><%=user.id%> </td>
+            <td><%=user.email%> </td>
             <td>
-                <form method="POST" action="/users/delete" style="display: inline;" id="submit">
-                <input type="hidden" name="id" value="<%= user.id %>" >
+                <form method="POST" action="/users/delete" style="display: inline;" id="submit" onsubmit="confirmarDelecao(event, this)">
+                <input type="hidden" name="id" value="<%=user.id%>" >
         <% if(user.id == sessionId){%>
-        <button class="btn btn-danger " disabled><i class="fa fa-trash"></i></button>
+        <button class="btn btn-success " disabled><i class="fa fa-trash"></i></button>
         <span class="badge bg-success"> Online</span>
          <% }else{ %> 
          <button class="btn btn-danger "><i class="fa fa-trash"></i></button>

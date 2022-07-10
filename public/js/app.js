@@ -3,7 +3,7 @@
 
 function confirmarDelecao(event, form){
     event.preventDefault();
-    let decision = confirm("Você quer deletar esta categoria?");
+    let decision = confirm("Gostaria de deletar ? Esta ação não pode ser desfeita!");
     if(decision){
         bootstrapSuccess()
         setTimeout(()=>{

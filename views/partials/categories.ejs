@@ -1,9 +1,8 @@
 <% category.forEach(category =>{%>
         <div class="col-sm-6">
         <ul class="list-unstyled mb-0">
-        <li><a class="btn btn-light btn-sm mb-1 " style="font-weight: 700;" href="/category/<%=category.slug%>"><%= category.title %></a>
+        <li><a class="btn btn-light btn-sm mb-1" style="font-weight: 700;" href="/category/<%=category.slug%>"><%=category.title%></a>
         </li>
-
         </ul>
         </div>
     <% }) %> 
@@ -11,7 +10,6 @@
 
     <!-- <div class="card-body">
         <h4 class="card-title">Tags</h4>
-        <a class="btn btn-light btn-sm mb-1" href="/category/<%=category.slug%>"><%= category.title %></a>
         <a class="btn btn-light btn-sm mb-1" href="page-category.html">Work</a>
         <a class="btn btn-light btn-sm mb-1" href="page-category.html">Lifestype</a>
         <a class="btn btn-light btn-sm mb-1" href="page-category.html">Photography</a>

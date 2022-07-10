@@ -13,7 +13,10 @@ const connection = new Sequelize(dbName,dbUser,dbPassword,{
     host:dbHost,
     dialect:'mysql',
     logging: false,
-    timezone:"-03:00"
+    timezone: '-03:00',
+        dialectOptions: {
+            timezone: "local",
+        }
 });
 
 

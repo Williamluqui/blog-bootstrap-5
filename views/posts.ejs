@@ -2,10 +2,10 @@
     <body>
     <!-- Responsive navbar-->
     <% if(user != undefined){%>
-         <%- include ('./partials/navbar.ejs')%>
-  <%  }else{ %> 
-   <%- include ('./partials/homenavbar.ejs')%>
-    <%  } %> 
+        <%-include ('./partials/navbar.ejs')%>
+  <% }else{ %> 
+    <%- include ('./partials/homenavbar.ejs')%>
+    <%} %> 
         <!-- Page content-->
         <div class="container mt-5">
             <div class="row">
@@ -15,17 +15,21 @@
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
-                            <h1 class="fw-bolder mb-1"><%= article.title %>  </h1>
+                            <h1 class="fw-bolder mb-1"><%=article.title%></h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on <%= article.createdAt %>  </div>
+                            <div class="text-muted fst-italic mb-2">Postado <%=article.createdAt%></div>
                             <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!"> <%= article.category.title%></a>
+                            <% if(article.category !== null){%> 
+                                <a class="badge bg-secondary text-decoration-none link-light" href="#!"> <%=article.category.title%></a>
+                                <% }else{%> 
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!"> <%=article.category%></a>
+                                    <%  } %> 
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4"><img class="card-img" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
                         <!-- Post content-->
                         <section class="mb-5">
-                            <p class="fs-5 mb-4"><%- article.body  %> </p>
+                            <p class="fs-5 mb-4"><%-article.body%></p>
                         </section>
                     </article>
                     <!-- Comments section-->

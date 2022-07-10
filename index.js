@@ -14,9 +14,11 @@ const Article = require("./routes/articles/Article");
 const Category = require("./routes/categories/Category");
 const UsersController = require("./routes/users/UsersController");
 const User = require("./routes/users/User")
-
+const flash = require("connect-flash")
 const adminAuth = require("./middlewares/adminAuth");
 
+const moment = require('moment');
+moment().format();
 
 
 // SECRET KEY // 
@@ -25,10 +27,8 @@ app.use(session({
   cookie:{maxAge: 3600000},// 1 HR
   resave: true,
   saveUninitialized: true
+}));
 
-}))
-
- 
 // VIEW ENGINE
 app.set("view engine", "ejs");
 
@@ -40,27 +40,28 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.use(express.json())
+app.use(express.json());
 //ROUTES
 app.use("/", categoriesController);
 app.use("/", articlesController);
 app.use("/", UsersController);
 
 
+ 
+app.get("/",(req, res) => {
+  //HOME PAGE //
+const {user} = req.session;
 
-app.get("/", (req, res) => {
-  // PAGINA HOME //
- let user = req.session.user;
-  Article.findAll({
+Article.findAll({
     order: [["id", "DESC"]],
     limit: 4,
-  }).then((articles) => {
-    
-    Category.findAll().then((category) => {
-      res.render("homepage", { articles: articles, category: category,user:user });
-      
-    });
+}).then((articles) => { 
+   Category.findAll().then((category) => {
+   if ( articles != undefined){
+      res.render("homepage", { articles: articles, category: category,user:user});   
+    }      
   });
+ });
 });
 
 
@@ -72,11 +73,13 @@ app.use((req, res) => {
 connection
   .authenticate()
   .then(() => {
-    console.log("Banco de dados ok");
+    console.log("Conexão com BD foi estabelecida com sucesso");
   })
-  .catch((error) => {
-    console.log(error);
+  .catch(() => {
+    console.log('Não foi possível se conectar com o banco de dados!');
   });
+
+
 
 app.listen(port, () => {
   console.log("**Servidor On**");
