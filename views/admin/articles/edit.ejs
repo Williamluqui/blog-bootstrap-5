@@ -25,12 +25,12 @@
         <input class="form-control" type="text" name="title" placeholder="Titulo do artigo" id="articlesJs" value=" <%=article.title%>  "><br>
         <textarea class="form-control" name="body" id="article" cols="30" rows="5" > <%=article.body%> </textarea><br>
         <label>Categorias:</label>
-        <select name="category" class="form-control" >
+        <select name="category" class="form-select form-select-md mb-3" >
         <% category.forEach(category => {%>
           <% if(category.id == article.categoryId) {%> 
-          <option   value="<%= category.id %>" selected > <%=category.title%> </option>
+          <option value="<%=category.id%>" selected > <%=category.title%> </option>
           <% }else{%> 
-            <option  name="id" value="<%= category.id %>"> <%=category.title%> </option>
+            <option name="id" value="<%=category.id%>"><%=category.title%> </option>
             <% }%> 
           <% }); %> 
         </select>

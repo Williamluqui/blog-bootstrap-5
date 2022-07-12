@@ -1,37 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/login.css">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;500;600&family=PT+Sans+Caption&display=swap" rel="stylesheet">
-  <script src="/js/bootstrap.min.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" >
-
-<style>
-  
-</style>
-  <title>Login</title>
-</head>
-<body>
-  <div class="container">
-    <div class="card card-container">
-        <img id="profile-img" class="profile-img-card" src="/images/avatar_2x.png" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;500;600&family=PT+Sans+Caption&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/js/bootstrap.min.js"></script>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container ">
+      <div class="card card-container ">
+        <img
+          id="profile-img"
+          class="profile-img-card"
+          src="/images/avatar_2x.png"
+        />
         <p id="profile-name" class="profile-name-card"></p>
         <form class="form-signin" action="/authenticate" method="post">
+          <span id="reauth-email" class="reauth-email"></span>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            placeholder="Email "
+          />
+          
+          <input
+            type="password"
+            name="password"
+            class="form-control mb-4"
+            placeholder="Senha"
+            required
+          />
 
-            <span id="reauth-email" class="reauth-email"></span>
-            <input type="email" name="email" id="floatingInput" class="form-control" placeholder="Email " required autofocus>
-            <input type="password" name="password" id="floatingInput" class="form-control mb-4" placeholder="Senha" required>
-           
-            
-            <button class="btn btn-lg btn-primary btn-block btn-signin" >Login</button>
-        </form><!-- /form -->
-        <p class="small fw-bold mt-2 pt-1 mb-3">Não tem uma conta? <a href="/users/new"
-          class="link-danger">Cadastro</a></p>
-        
-    </div><!-- /card-container -->
-</div><!-- /container -->
-</body>
+          <button class="btn btn-lg btn-primary btn-block btn-signin">
+            Login
+          </button>
+        </form>
+        <!-- /form -->
+        <p class="small fw-bold mt-2 pt-1 mb-3">
+          Não tem uma conta?
+          <a href="/users/new" class="link-danger">Cadastro</a>
+        </p>
+      </div>
+      <!-- /card-container -->
+    </div>
+    <!-- /container -->
+  </body>
 </html>

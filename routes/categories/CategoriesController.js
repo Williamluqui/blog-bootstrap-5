@@ -27,7 +27,7 @@ router.post("/categories/save",adminAuth,(req, res) =>{
 // SAVE CATEGORY BD //
    if(title){
     Category.create({
-      title: title,
+      title,
       slug: slugify(title)
     }).then(()=>{
       res.redirect("/admin/categories/");
@@ -50,7 +50,7 @@ if(id != undefined){
     if(!isNaN(id)){
         Category.destroy({
           where:{
-            id:id
+            id
           }
          }).then(()=>{
         res.redirect("/admin/categories");
@@ -89,35 +89,12 @@ let {id, title}= req.body;
 
   Category.update({title: title,slug:slugify(title)},{
     where: {
-    id:id
+    id
   }
 }).then(()=>{
   res.redirect("/admin/categories")
 })
 })
-
-// router.get("/category/:slug",(req,res)=>{
-// // SEARCH 
-//  let {slug} = req.params;
-//  const {user} = req.session;
-//  Category.findOne({
-//   where:{
-//     slug:slug
-//   },include: [{model:Article}]
-//   }).then(category =>{
-//     if(category){
-//       Category.findAll().then(category=>{
-//         Article.findAll().then(article =>{
-//           console.log(slug)
-//         res.render("homepage",{articles:article,category:category, user:user})
-        
-//         })
-//       })
-//     }else{
-//       res.redirect("/s")
-//     }
-//  })
-// })
 
 
 
@@ -126,7 +103,7 @@ router.get("/category/:slug",(req, res) => {
   const {user} = req.session;
   Category.findOne({
       where: {
-          slug: slug
+          slug
       },
       include: [{model: Article}]
   }).then( category => {

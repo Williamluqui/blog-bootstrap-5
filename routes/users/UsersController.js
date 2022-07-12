@@ -6,11 +6,14 @@ const adminAuth = require("../../middlewares/adminAuth");
 const flash = require("connect-flash");
 
 router.use(flash());
+
+
+
 // LISTAGEM DE USUARIOS //
 router.get("/admin/users", adminAuth, (req, res) => {
-  let session = req.session.user;
-  let sessionId = JSON.stringify(session.id);
-  let msgErro = "";
+  const session = req.session.user;
+  const sessionId = JSON.stringify(session.id);
+  const msgErro = "";
 
   User.findAll().then((user) => {
     res.render("admin/users/users", { user: user,sessionId:sessionId,msg:msgErro });
@@ -25,14 +28,14 @@ router.get("/users/new/",adminAuth, (req, res) => {
 router.post("/users/create", adminAuth,(req, res) => {
   const {email, password, passwordRepeat} = req.body;
 
-  let regex_validation =
+  const regex_validation =
   /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
   
-  if (password == passwordRepeat &&  regex_validation.test(email) == true ) {
-    console.log(email, regex_validation.test(email))
+  if (password == passwordRepeat && regex_validation.test(email) == true ) {
     User.findOne({ where: { email: email } }).then((user) => {
+
       if (user == undefined) {
-        let salt = bcrypt.genSaltSync(10);
+        const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
         User.create({
           email: email.toLowerCase(),
@@ -50,13 +53,13 @@ router.post("/users/create", adminAuth,(req, res) => {
       }
     });
   } else {
-    res.status(401).send({error: true, msg: "senhas ou email invalido!" });
+    res.status(401).send({error: true, msg: "email invalido!" });
   }
 });
 
 // LOGIN E AUTENTICACAO //
 router.get("/login", (req, res) => {
-  let user = req.session.user;
+  const {user} = req.session;
  
   if (user == undefined) {
     res.render("admin/users/login");
@@ -67,8 +70,8 @@ router.get("/login", (req, res) => {
 
 router.post("/authenticate", (req, res) => {
   let {email, password} = req.body;
- 
-  User.findOne({ where: { email: email } }).then((user) => {
+
+  User.findOne({ where: { email } }).then((user) => {
     if (user != undefined) {
       // se existe um usuario cadastrado
       // valida senha
@@ -89,8 +92,8 @@ router.post("/authenticate", (req, res) => {
 });
 
 router.post('/users/delete',adminAuth,(req,res)=>{
-let id = req.body.id;
-let session = req.session.user;
+const {id} = req.body;
+const session = req.session.user;
 let sessionId = JSON.stringify(session.id);
 
 

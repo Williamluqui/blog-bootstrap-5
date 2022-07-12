@@ -1,5 +1,5 @@
 function adminAuth(req,res,next){
-    const user = req.session.user ;
+    const {user} = req.session ;
     if (user != undefined){
         next();
     }else{

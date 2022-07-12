@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  
+    <title>Cadastro</title>
+</head>
+<body>
+    
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+              <img src="/images/cadastro1.png"  
+                class="img-fluid rounded mx-auto d-block" alt="...">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <form action="/users/create" method="post">
+            <h1> Cadastro </h1>
+            <br>
+                <!-- Email input -->
+                <div class="form-floating mb-5">
+                  <input type="email" name="email" class="form-control form-control-lg"
+                    placeholder="Enter a valid email address" id="email" required/>
+                  <label class="form-label" for="form3Example3" >Email</label>
+                </div>
+                <!-- Password input -->
+                <div class="form-floating mb-3">
+                  <input type="password" name="password"  class="form-control form-control-lg"
+                    placeholder="Enter password" id="password" required/>
+                  <label class="form-label" for="floatingInput" >Senha</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="password" name="passwordRepeat"  class="form-control form-control-lg"
+                    placeholder="Enter password" id="confirmPassword" required/>
+                  <label class="form-label" for="floatingInput">Repita a Senha</label>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <!-- Checkbox -->
+                  <div class="form-check mb-0">
+                  </div>
+                </div>
+            
+                <div class="text-center text-lg-center mt-1 pt-0">
+                  <button type="submit" class="btn btn-primary btn-lg"
+                    style="padding-left: 1.5rem; padding-right: 1.5rem;" >Cadastrar</button>
+              </form>
+              <div id="msgErro">
+                        
+              </div>
+              <div class="text-center text-lg-center mt-3 pt-2">
+              <h5>Já tem cadastro?</h5>
+              <div class="text-center text-lg-center mt-3 pt-2">
+                <a href="/login" class="btn btn-outline-success btn-sm"
+                style="padding-right: 0.8rem;">
+                Login
+                  </a>
+                 </div>
+            </div>
+          </div>
+        </div>
+        
+      </section>
+</body>
+<script src="/js/create.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/jquery.bootstrap-growl.min.js"></script>
+</html>
