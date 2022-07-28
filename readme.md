@@ -42,7 +42,7 @@ Projeto Blog , onde o admin pode editar apagar ou escrever um artigo , estudando
 ## ⚙️ Aprimoramentos
 
 - Roles [admin, moderator].
-- Não pode deletar um usúario ativo .
+- Não pode deletar um usuário ativo .
 
 ---
 
