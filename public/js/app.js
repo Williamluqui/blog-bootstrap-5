@@ -1,18 +1,39 @@
 
 // Botao modal para deletar uma categoria
 
-function confirmarDelecao(event, form){
-    event.preventDefault();
-    let decision = confirm("Gostaria de deletar ? Esta ação não pode ser desfeita!");
-    if(decision){
-        bootstrapSuccess()
-        setTimeout(()=>{
-         form.submit();
-        },1300)
+// function confirmarDelecao(event, form){
+//     event.preventDefault();
+//     let decision = confirm("Gostaria de deletar ? Esta ação não pode ser desfeita!");
+//     if(decision){
+//         bootstrapSuccess()
+//         setTimeout(()=>{
+//          form.submit();
+//         },1300)
         
+        
+//     }
+// }
+
+async function loginMessage(){
+    try {
+        const response = await fetch('http://localhost:8080/authenticate/')
+        const data = await response.json();
+        show(data)
+    } catch (error) {
+        console.error(error)
+    }
+   
+   loginMessage()
+};
+ function show(message){
+    let output = '';
+    for (let message of message) {
+        output += `<h5> ${message}</h5>`
         
     }
-}
+    document.getElementById('message').innerHTML = output;
+ }
+
 
 // let btnModal = document.getElementById('btnDelete')
 // btnModal.addEventListener('click',(e)=>{
@@ -44,24 +65,24 @@ function confirmarDelecao(event, form){
 
 // formulario artigo ,prevencao de erros relacionado a campo vazio
 
-// const btnArticle = document.getElementById("btnCadastrar")
+const btnArticle = document.getElementById("btnCadastrar")
 
-// btnArticle.addEventListener('click',(e)=>{
-// e.preventDefault()
-// const formArticle = document.getElementById("formArticle")    
-// const article = document.getElementById("articlesJs");
+btnArticle.addEventListener('click',(e)=>{
+e.preventDefault()
+const formArticle = document.getElementById("formArticle")    
+const article = document.getElementById("articlesJs");
 
-// if (!article.value == "") {
-//     $.bootstrapGrowl("Artigo cadastrado");
-//     setTimeout(()=>{
-//     console.log('titulo preenchido')
-//     formArticle.submit()
-//     },1200)  
-//   }else{
-//     console.log('preencha o titulo')
-//     bootstrapError()
-// }
-// })
+if (!article.value == "") {
+    $.bootstrapGrowl("Artigo cadastrado");
+    setTimeout(()=>{
+    console.log('titulo preenchido')
+    formArticle.submit()
+    },1200)  
+  }else{
+    console.log('preencha o titulo')
+    bootstrapError()
+}
+})
 
 
 // const editCategory = document.getElementById("edit-categories")

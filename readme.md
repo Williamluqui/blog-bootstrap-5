@@ -24,7 +24,8 @@
 
 ## 💻 Sobre o projeto
 
-Projeto Blog , onde o usuario pode editar apagar ou escrever um artigo , estudando o conceito de CRUD pude formular este blog com o auxilio de um professor, estou aprimorando algumas funcionalidades . 
+Projeto Blog , onde o admin pode editar apagar ou escrever um artigo , estudando o conceito de CRUD pude formular este blog com o auxilio de um professor, estou aprimorando algumas funcionalidades . 
+
 
 ---
 
@@ -35,7 +36,13 @@ Projeto Blog , onde o usuario pode editar apagar ou escrever um artigo , estudan
 - [x] O Admin pode criar uma categoria.
 - [x] O Admin pode remover uma categoria.
 - [x] Sistema de Login adm.
-- [ ] Sistema de Login Usuário.
+- [x] O Admin pode remover um moderador.
+- [X] Sistema de Login Moderador.
+
+## ⚙️ Aprimoramentos
+
+- Roles [admin, moderator].
+- Não pode deletar um usúario ativo .
 
 ---
 

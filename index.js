@@ -13,10 +13,10 @@ const secret = process.env.COOKIE_SECRET;
 const Article = require("./routes/articles/Article");
 const Category = require("./routes/categories/Category");
 const UsersController = require("./routes/users/UsersController");
-const User = require("./routes/users/User")
-const flash = require("connect-flash")
-const adminAuth = require("./middlewares/adminAuth");
 
+const flash = require("connect-flash")
+const auth = require("./middlewares/auth");
+const rolesAuth = require("./middlewares/rolesAuth")
 const moment = require('moment');
 moment().format();
 
@@ -28,6 +28,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
 
 // VIEW ENGINE
 app.set("view engine", "ejs");
@@ -48,17 +49,17 @@ app.use("/", UsersController);
 
 
  
+ 
 app.get("/",(req, res) => {
   //HOME PAGE //
 const {user} = req.session;
-
 Article.findAll({
     order: [["id", "DESC"]],
     limit: 4,
 }).then((articles) => { 
    Category.findAll().then((category) => {
    if ( articles != undefined){
-      res.render("homepage", { articles: articles, category: category,user:user});   
+      res.render("homepage", { articles: articles, category: category,user:user,message: req.flash('message')});   
     }      
   });
  });

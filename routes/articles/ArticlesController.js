@@ -3,13 +3,13 @@ const router = express.Router();
 const Category = require("../categories/Category");
 const Article = require("./Article");
 const slugify = require("slugify");
-const adminAuth = require("../../middlewares/adminAuth");
+const auth = require("../../middlewares/auth");
 const moment = require('moment'); 
 
 
 moment().format();
 
-router.get("/admin/articles", adminAuth,(req, res) => {
+router.get("/admin/articles", auth,(req, res) => {
   Article.findAll({
     include: [{ model: Category }],
   }).then((articles) => {
@@ -20,13 +20,12 @@ router.get("/admin/articles", adminAuth,(req, res) => {
 });
 
 
-router.get("/admin/articles/new", adminAuth,(req, res) => {
+router.get("/admin/articles/new", auth,(req, res) => {
 
   Category.findAll()
     .then((categories) => {
       res.render("admin/articles/new", { categories: categories });
-    })
-    .catch(() => {
+    }).catch(() => {
       res.redirect("404")
     });
 });
@@ -44,21 +43,23 @@ router.get("/post/:slug", (req, res) => { //<<<<<
     Category.findAll().then((category)=>{
       if (article != undefined) {
           res.render("posts", { article: article,category:category,user:user});
+        }else{
+          res.redirect('/post?error=invalid?argument')
         }
     })
   });
 });
 
-router.get("/admin/articles/edit/:slug",adminAuth, (req, res) => {
+router.get("/admin/articles/edit/:slug",auth, (req, res) => {
   // EDITAR ARTIGO
   let {slug} = req.params;
   
-  Article.findOne({ where: { slug: slug } }).then((article) => {
+  Article.findOne({ where: { slug:slug } }).then((article) => {
     Category.findAll().then((category) => {
       if (article != undefined) {
         res.render("admin/articles/edit", {
-        article: article,
-        category: category,
+        article:article,
+        category:category,
       });
       }else{
         res.render('admin/articles/')
@@ -68,15 +69,17 @@ router.get("/admin/articles/edit/:slug",adminAuth, (req, res) => {
   });
 });
 
-router.post("/article/update",adminAuth, (req, res) => {
+router.post("/article/update",auth, (req, res) => {
   //ATUALIZAR O BD APOS EDITAR O ARQUIVO
 let {id, title, body, category} = req.body;
+
   Article.update(
     { title: title, slug: slugify(title), body: body, categoryId: category },
     {
       where: {
         id: id,
       },
+     
     }).then(() => {
       res.redirect("/admin/articles") // inserir msg de sucesso
     }).catch((err) => {
@@ -87,7 +90,7 @@ let {id, title, body, category} = req.body;
     
 
 
-router.post("/articles/save", adminAuth,(req, res) => {
+router.post("/articles/save", auth,(req, res) => {
   //  SAVE ARTICLE
   let {title, body,category} = req.body;
 
@@ -96,7 +99,8 @@ router.post("/articles/save", adminAuth,(req, res) => {
     title:title,
     slug: slugify(title),
     body:body,
-    categoryId: category,
+    categoryId:category
+    
   }).then(() => {
     res.redirect("/admin/articles");
   });
@@ -105,7 +109,7 @@ router.post("/articles/save", adminAuth,(req, res) => {
   }
 });
 
-router.post("/articles/delete", adminAuth,(req, res) => {
+router.post("/articles/delete", auth,(req, res) => {
   // DELETAR ARTIGO
   let {id} = req.body;
 

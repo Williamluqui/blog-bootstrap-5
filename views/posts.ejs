@@ -20,7 +20,8 @@
                             <div class="text-muted fst-italic mb-2">Postado <%=article.createdAt%></div>
                             <!-- Post categories-->
                             <% if(article.category !== null){%> 
-                                <a class="badge bg-secondary text-decoration-none link-light" href="#!"> <%=article.category.title%></a>
+                                
+                                <a class="badge bg-info text-decoration-none link-light" href="/category/<%=article.category.slug%>"> <%=article.category.title%></a>
                                 <% }else{%> 
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!"> <%=article.category%></a>
                                     <%  } %> 

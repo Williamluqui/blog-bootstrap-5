@@ -6,7 +6,7 @@ const Category = require("./Category");
 const flash = require("connect-flash")
 const session = require('express-session');
 const Article = require("../articles/Article");
-const adminAuth = require("../../middlewares/adminAuth");
+const auth = require("../../middlewares/auth");
 
 router.use(flash())
 router.use(session({
@@ -17,11 +17,11 @@ router.use(session({
 }));
 
 
-router.get("/admin/categories/new",adminAuth,(req, res)=>{
+router.get("/admin/categories/new",auth,(req, res)=>{
   res.render("./admin/categories/new")
 });
 
-router.post("/categories/save",adminAuth,(req, res) =>{
+router.post("/categories/save",auth,(req, res) =>{
   let {title} = req.body;
 
 // SAVE CATEGORY BD //
@@ -37,13 +37,13 @@ router.post("/categories/save",adminAuth,(req, res) =>{
   }
 });
 
-router.get("/admin/categories",adminAuth, (req,res) => { // adicionar adminAuth
+router.get("/admin/categories",auth, (req,res) => { // adicionar adminAuth
   Category.findAll().then(categories =>{
      res.render("admin/categories/index",{categories:categories});
   })
 })
 
-router.post("/categories/delete", adminAuth,(req,res)=>{
+router.post("/categories/delete", auth,(req,res)=>{
   let {id} = req.body;
 
 if(id != undefined){
@@ -55,6 +55,8 @@ if(id != undefined){
          }).then(()=>{
         res.redirect("/admin/categories");
       })
+       
+     
   }else{
       res.redirect("/admin/categories");
     } 
@@ -64,7 +66,7 @@ if(id != undefined){
 });
 
 //EDIT CATEGORY
-router.get("/admin/categories/edit/:id",adminAuth,(req, res)=>{
+router.get("/admin/categories/edit/:id",auth,(req, res)=>{
   let {id} = req.params;
   // Corrigir erro ao digitar id e letras no html
   if (isNaN(id)) { 
@@ -84,7 +86,7 @@ router.get("/admin/categories/edit/:id",adminAuth,(req, res)=>{
   }
 })
 
-router.post("/categories/update",adminAuth,(req, res)=>{
+router.post("/categories/update",auth,(req, res)=>{
 let {id, title}= req.body;
 
   Category.update({title: title,slug:slugify(title)},{
@@ -101,6 +103,7 @@ let {id, title}= req.body;
 router.get("/category/:slug",(req, res) => {
   let {slug} = req.params;
   const {user} = req.session;
+  let message = [];
   Category.findOne({
       where: {
           slug
@@ -109,7 +112,7 @@ router.get("/category/:slug",(req, res) => {
   }).then( category => {
       if(category != undefined){
           Category.findAll().then(categories => {
-              res.render("homepage",{articles: category.articles,category: categories, user:user});
+              res.render("homepage",{articles: category.articles,category: categories, user:user,message});
           });
       }else{
           res.redirect("/");

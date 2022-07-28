@@ -42,12 +42,14 @@
             <td>
                 <form method="POST" action="/users/delete" style="display: inline;" id="submit" onsubmit="confirmarDelecao(event, this)">
                 <input type="hidden" name="id" value="<%=user.id%>" >
-        <% if(user.id == sessionId){%>
+        <% if(user.id == sessionId ){%>
         <button class="btn btn-success " disabled><i class="fa fa-trash"></i></button>
-        <span class="badge bg-success"> Online</span>
+        <span class="badge bg-success"> On</span>
+        <span class="badge bg-success"> <%=roles%> </span>
          <% }else{ %> 
+          
          <button class="btn btn-danger "><i class="fa fa-trash"></i></button>
-        <%  } %>          
+        <% } %>          
                     
                     <!-- <i  type="button" class="material-icons delete" data-bs-toggle="modal" data-bs-target="#mymodal" id="btnForm" style="color:red" title="apagar">
                         &#xE872;

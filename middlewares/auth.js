@@ -1,4 +1,5 @@
-function adminAuth(req,res,next){
+function auth(req,res,next){
+   
     const {user} = req.session ;
     if (user != undefined){
         next();
@@ -9,4 +10,4 @@ function adminAuth(req,res,next){
 
 
 
-module.exports = adminAuth;
+module.exports = auth;

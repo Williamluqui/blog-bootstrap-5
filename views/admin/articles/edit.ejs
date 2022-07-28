@@ -21,8 +21,8 @@
         </div>   
     <div class="card-body">
     <form method="POST" action="/article/update" id="formArticle">
-      <input type="hidden" value="<%= article.id %> " name="id">
-        <input class="form-control" type="text" name="title" placeholder="Titulo do artigo" id="articlesJs" value=" <%=article.title%>  "><br>
+      <input type="hidden" value="<%=article.id%>" name="id">
+        <input class="form-control" type="text" name="title" placeholder="Titulo do artigo" id="articlesJs" value="<%=article.title%>"><br>
         <textarea class="form-control" name="body" id="article" cols="30" rows="5" > <%=article.body%> </textarea><br>
         <label>Categorias:</label>
         <select name="category" class="form-select form-select-md mb-3" >

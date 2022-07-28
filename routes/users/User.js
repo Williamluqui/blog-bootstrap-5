@@ -4,10 +4,18 @@ const connection = require("../../database/database");
 const User = connection.define('users',{
     email:{
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            isEmail:true
+        }
     },password:{
         type:Sequelize.STRING, 
         allowNull: false
+    },roles:{
+        type:Sequelize.ENUM,
+        allowNull:false,
+        values:['admin','moderator'],
+        defaultValue: 'moderator' 
     }
 })
 
