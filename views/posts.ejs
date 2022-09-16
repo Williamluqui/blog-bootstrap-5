@@ -17,7 +17,11 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1"><%=article.title%></h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Postado <%=article.createdAt%></div>
+
+                          
+                                
+                           <% let date = { weekday: 'long', year: 'numeric', month: 'long', day: '2-digit' } %> 
+                            <div class="text-muted fst-italic mb-2">Postado <%=article.createdAt.toLocaleDateString('pt-BR',date)%></div>
                             <!-- Post categories-->
                             <% if(article.category !== null){%> 
                                 

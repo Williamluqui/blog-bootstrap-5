@@ -14,7 +14,7 @@ router.get("/admin/articles", auth,(req, res) => {
     include: [{ model: Category }],
   }).then((articles) => {
     res.render("admin/articles/index", {
-      articles: articles
+      articles: articles,
     });
   });
 });

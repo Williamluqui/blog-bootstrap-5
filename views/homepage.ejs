@@ -15,11 +15,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             </div>
-            
             <% } %> 
-            
-            
-            
 
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
             <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -52,7 +48,8 @@
                     <div class="card mb-2 shadow p-3 mb-5 bg-body rounded">
                     <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
                     <div class="card-body">
-                        <div class="small text-muted" id="displayMoment"><%=articles.createdAt%></div>
+                        <% let date = { weekday: 'long', year: 'numeric', month: 'long', day: '2-digit' } %>
+                        <div class="small text-muted" id="displayMoment"><%=articles.createdAt.toLocaleDateString('pt-BR',date)%></div>
                         <h2 class="card-title"><%=articles.title%></h2>
                         <p class="card-text"><% if (articles.body.length > 10 ) { %>
                         <p class="card-text"><%-articles.body.substring(0, 190) + ' ...'%></p>
@@ -93,14 +90,9 @@
                 <div class="card-body">
                     <div class="card-body">
                         <div class="row">
-                            
-                           
-                                  
                             <!--   EJS CATEGORIAS -->
-
                             <%- include ('./partials/categories.ejs')%>                      
                                    </div>
-                                
                         </div>
                     </div>
                 </div>

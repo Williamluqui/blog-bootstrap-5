@@ -80,8 +80,9 @@ connection
     console.log('Não foi possível se conectar com o banco de dados!');
   });
 
-
+ 
 
 app.listen(port, () => {
+   
   console.log("**Servidor On**");
 });

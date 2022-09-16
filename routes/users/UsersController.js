@@ -8,7 +8,9 @@ const secret = process.env.COOKIE_SECRET;
 const cookieParse = require("cookie-parser");
 const bodyParser = require("body-parser");
 const auth = require("../../middlewares/auth");
-const rolesAuth = require("../../middlewares/rolesAuth")
+const rolesAuth = require("../../middlewares/rolesAuth");
+
+
 
 router.use(bodyParser.json());
 router.use(cookieParse("hsluyrnf"));
@@ -45,7 +47,6 @@ router.get("/users/new/", (req, res) => {
 
 router.post("/users/create", (req, res) => { // fechar rota
   const { email, password, passwordRepeat } = req.body;
-
   const regex_validation =
     /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
 
@@ -84,14 +85,16 @@ router.post("/users/create", (req, res) => { // fechar rota
 // LOGIN E AUTENTICACAO //
 router.get("/login", (req, res) => { 
   const { user } = req.session;
+  
   let message = req.flash("message", "");
   if (user == undefined) {
     res.render("admin/users/login", { message });
+    console.log(user)
   } else {
+    console.log(user)
     res.redirect("/");
   }
 });
-
 
 router.post("/authenticate", (req, res) => { // fechar rota
   let { email, password } = req.body;
@@ -127,6 +130,7 @@ router.post("/users/delete", auth,rolesAuth, (req, res) => {
   const { id } = req.body;
   const session = req.session.user;
   let sessionId = JSON.stringify(session.id);
+  console.log(sessionId)
 
   if (id != sessionId) {
     if (!isNaN(sessionId)) {
@@ -138,7 +142,7 @@ router.post("/users/delete", auth,rolesAuth, (req, res) => {
         res.redirect("/admin/users");
       });
     } else {
-      console.log("login igual");
+      res.redirect("/admin/users");
     }
   } else {
     res.redirect("/admin/users");
